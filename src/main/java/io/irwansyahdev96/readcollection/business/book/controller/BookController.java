@@ -1,5 +1,7 @@
 package io.irwansyahdev96.readcollection.business.book.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.irwansyahdev96.readcollection.base.dto.res.BaseTransactionResDto;
+import io.irwansyahdev96.readcollection.base.dto.res.BaseResListDto;
+import io.irwansyahdev96.readcollection.base.dto.res.BaseResSingleDto;
+import io.irwansyahdev96.readcollection.business.book.dto.BookDeleteReqDto;
+import io.irwansyahdev96.readcollection.business.book.dto.BookInsertReqDto;
+import io.irwansyahdev96.readcollection.business.book.dto.CategoryBookInsertReqDto;
+import io.irwansyahdev96.readcollection.business.book.dto.BookUpdateReqDto;
 import io.irwansyahdev96.readcollection.business.book.service.BookService;
-import io.irwansyahdev96.readcollection.dto.BaseInsertResDto;
-import io.irwansyahdev96.readcollection.dto.BaseResListDto;
-import io.irwansyahdev96.readcollection.dto.BaseResSingleDto;
-import io.irwansyahdev96.readcollection.dto.BaseUpdateAndDeleteResDto;
-import io.irwansyahdev96.readcollection.dto.book.BookDeleteReqDto;
-import io.irwansyahdev96.readcollection.dto.book.BookInsertReqDto;
-import io.irwansyahdev96.readcollection.dto.book.BookListResDataDto;
-import io.irwansyahdev96.readcollection.dto.book.BookSingleResDto;
-import io.irwansyahdev96.readcollection.dto.book.BookUpdateReqDto;
-import io.irwansyahdev96.readcollection.dto.book.BookUpdateStatusReqDto;
 
 @RestController
 @RequestMapping("books")
@@ -33,51 +32,53 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping
-    public ResponseEntity<BaseResListDto<BookListResDataDto>> getAll(@RequestParam(value="search",required = false,defaultValue = "-") Object search){
-        BaseResListDto<BookListResDataDto> baseResListDto = null;
+    public ResponseEntity<BaseResListDto<?>> getAll(@RequestParam(value="search",required = false,defaultValue = "") String search, Integer page, Integer limit){
+        BaseResListDto<?> baseResListDto = null;
 
-        if(search.equals("-")){
-            baseResListDto = bookService.getAll();
+        if(search.isEmpty()){
+            baseResListDto = bookService.getAll(page, limit);
         }else{
-            baseResListDto = bookService.getAll(search);
+            baseResListDto = bookService.getAll(page, limit, search);
         }
         
         return new ResponseEntity<>(baseResListDto, HttpStatus.OK);
     }
 
-    @GetMapping("{id}/id")
-    public ResponseEntity<BaseResSingleDto<BookSingleResDto>> getById(@PathVariable("id") String id){
-        BaseResSingleDto<BookSingleResDto> baseResSingleDto = bookService.getById(id);
+    @GetMapping("{issbn}/issbn")
+    public ResponseEntity<BaseResSingleDto<?>> getById(@PathVariable("issbn") String issbn){
+        BaseResSingleDto<?> byIssbn = bookService.getByIssbn(issbn);
 
-        return new ResponseEntity<>(baseResSingleDto, HttpStatus.OK);
+        return new ResponseEntity<>(byIssbn, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<BaseInsertResDto> save(@RequestBody BookInsertReqDto bookInsertReqDto){
-        BaseInsertResDto baseInsertResDto = bookService.save(bookInsertReqDto);
+    public ResponseEntity<BaseTransactionResDto> add(@Valid @RequestBody BookInsertReqDto bookInsertReqDto){
+
+        BaseTransactionResDto baseInsertResDto = bookService.add(bookInsertReqDto);
 
         return new ResponseEntity<>(baseInsertResDto, HttpStatus.CREATED);
     }
 
+    @PostMapping("/add-category")
+    public ResponseEntity<BaseTransactionResDto> addCategory(@Valid @RequestBody CategoryBookInsertReqDto bookInsertReqDto){
 
-    @PutMapping
-    public ResponseEntity<BaseUpdateAndDeleteResDto> update(@RequestBody BookUpdateReqDto bookUpdateReqDto){
-        BaseUpdateAndDeleteResDto baseUpdateResDto = bookService.update(bookUpdateReqDto);
+        BaseTransactionResDto baseInsertResDto = bookService.addCategory(bookInsertReqDto);
 
-        return new ResponseEntity<>(baseUpdateResDto, HttpStatus.OK);
+        return new ResponseEntity<>(baseInsertResDto, HttpStatus.CREATED);
     }
 
-    @PutMapping("update-status")
-    public ResponseEntity<BaseUpdateAndDeleteResDto> update(@RequestBody BookUpdateStatusReqDto bookUpdateStatusReqDto){
-        BaseUpdateAndDeleteResDto baseUpdateResDto = bookService.updateStatus(bookUpdateStatusReqDto);
+    @PutMapping
+    public ResponseEntity<BaseTransactionResDto> update(@Valid @RequestBody BookUpdateReqDto bookUpdateReqDto){
+        BaseTransactionResDto baseUpdateResDto = bookService.update(bookUpdateReqDto);
 
         return new ResponseEntity<>(baseUpdateResDto, HttpStatus.OK);
     }
 
     @DeleteMapping
-    public ResponseEntity<BaseUpdateAndDeleteResDto> delete(@RequestBody BookDeleteReqDto bookDeleteReqDto){
-        BaseUpdateAndDeleteResDto baseDeleteResDto = bookService.delete(bookDeleteReqDto);
+    public ResponseEntity<BaseTransactionResDto> delete(@RequestBody BookDeleteReqDto bookDeleteReqDto){
+        BaseTransactionResDto baseDeleteResDto = bookService.delete(bookDeleteReqDto);
 
         return new ResponseEntity<>(baseDeleteResDto, HttpStatus.OK);
     }
+
 }
