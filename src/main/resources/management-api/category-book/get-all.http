@@ -1,0 +1,3 @@
+GET http://localhost:8080/book-types/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyYyI6InNlIiwiaWQiOiIyNWRjZmQ3OC1jMGYyLTQ5NGEtYmU1MC0wYTk3MzY1YmFjMjgiLCJleHAiOjE3NTQ0NDk3MTZ9.MmIiSQC9N36YMeADpsPUrOe_-XeCWqlm9qTXUzYhXko

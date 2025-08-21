@@ -1,0 +1,16 @@
+POST http://localhost:8080/books/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyYyI6InNlIiwiaWQiOiIyNWRjZmQ3OC1jMGYyLTQ5NGEtYmU1MC0wYTk3MzY1YmFjMjgiLCJleHAiOjE3NTQ0NjQ4Mjl9.FrLgyV7PnwwSRH_7_FFlONiPYrmKBi8mymNOORFtItU
+
+{
+    "issbn":"ISB12234",
+    "title":"Atomic Habits 2",
+    "numberOfPage":"700",
+    "synopsis":"Build Human Habit for someday",
+    "price":10.0,
+    "publisher":"No",
+    "authorName":"Now",
+    "bookType":{
+        "bookTypeCode":"adv"
+    }
+}

@@ -1,0 +1,9 @@
+POST http://localhost:8080/users/
+content-type: application/json
+
+{
+    "username": "irwan.dev2",
+    "name": "irwan",
+    "password": "irwan.dev2",
+    "role": "se"
+}
