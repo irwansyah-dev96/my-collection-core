@@ -1,44 +1,38 @@
 package io.irwansyahdev96.readcollection.business.status.controller;
 
+import io.irwansyahdev96.readcollection.base.dto.res.BaseResListDto;
+import io.irwansyahdev96.readcollection.base.dto.res.BaseResSingleDto;
+import io.irwansyahdev96.readcollection.business.status.model.Status;
+import io.irwansyahdev96.readcollection.business.status.service.StatusService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import io.irwansyahdev96.readcollection.dto.BaseInsertResDto;
-import io.irwansyahdev96.readcollection.dto.BaseResListDto;
-import io.irwansyahdev96.readcollection.dto.BaseResSingleDto;
-import io.irwansyahdev96.readcollection.model.Status;
-
-import java.util.List;
-
-import io.irwansyahdev96.readcollection.business.status.service.StatusService;
+import java.util.Map;
 
 @RestController
-@RequestMapping("statuses")
+@RequestMapping("status")
 public class StatusController {
 
     @Autowired
     private StatusService statusService;
 
     @GetMapping
-    public ResponseEntity<BaseResListDto<Status>> getAll(){
-        BaseResListDto<Status> baseResListDto = statusService.getAll();
+    public ResponseEntity<BaseResListDto<?>> getAll(){
+        BaseResListDto<Map<String,Object>> baseResListDto = statusService.getAll();
 
         return new ResponseEntity<>(baseResListDto,HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<BaseInsertResDto> save(@RequestBody List<Status> statusInsertReqDto){
-        BaseInsertResDto baseInsertResDto = statusService.save(statusInsertReqDto);
+    @GetMapping("{statusCode}/status")
+    public ResponseEntity<BaseResSingleDto<Status>> getByStatus(@PathVariable("statusCode") String statusCode){
+        BaseResSingleDto<Status> byStatusCode = statusService.getByStatusCode(statusCode);
 
-        return new ResponseEntity<>(baseInsertResDto, HttpStatus.CREATED);
+        return new ResponseEntity<>(byStatusCode, HttpStatus.OK);
     }
 
-    @GetMapping("{statusCode}/code")
-    public ResponseEntity<BaseResSingleDto<Status>> getByStatusCode(@PathVariable("statusCode") String statusCode){
-        BaseResSingleDto<Status> baseResSingleDto = statusService.getByStatusCode(statusCode);
 
-        return new ResponseEntity<BaseResSingleDto<Status>>(baseResSingleDto, HttpStatus.OK);
-    }
+
 }
