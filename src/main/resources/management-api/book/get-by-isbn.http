@@ -1,0 +1,3 @@
+GET http://localhost:8081/mbc/books/ISB181296/id
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyYyI6InNlIiwiZXhwIjoxNzU1NDMzOTc5LCJ1c2VybmFtZSI6Imlyd2FuLmRldiJ9.0P6BnOS3_adlk85u5Z1y4LnZ5V1aDkzqpq6QP7FU5FA

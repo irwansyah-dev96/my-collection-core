@@ -1,0 +1,14 @@
+PUT http://localhost:8081/mbc/books/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyYyI6InNlIiwiZXhwIjoxNzU1NDI2MjU2LCJ1c2VybmFtZSI6Imlyd2FuLmRldiJ9.96JkIJwCVlulGWsuuaE9Yuq0OjLnQvzAtQUytmITFHs
+
+{
+    "issbn": "ISB181296",
+    "title": "Filosofi Teras",
+    "numberOfPage": 500,
+    "authorName": "Now",
+    "publisher": "No",
+    "releaseDate": "2010-01-01",
+    "description":"Build Human Habit for someday",
+    "price":20.0
+}

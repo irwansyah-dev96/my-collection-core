@@ -1,8 +1,8 @@
-POST http://localhost:8080/book-types/
+POST http://localhost:8081/mbc/categories/
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyYyI6InNlIiwiaWQiOiIyNWRjZmQ3OC1jMGYyLTQ5NGEtYmU1MC0wYTk3MzY1YmFjMjgiLCJleHAiOjE3NTQ0NDk3MTZ9.MmIiSQC9N36YMeADpsPUrOe_-XeCWqlm9qTXUzYhXko
 
 {
-    "bookTypeCode": "Adv",
-    "bookTypeName": "Adventure"
+    "categoryCode": "MYT",
+    "categoryName": "Mystic"
 }

@@ -1,0 +1,7 @@
+DELETE http://localhost:8081/mbc/books/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyYyI6InNlIiwiZXhwIjoxNzU1NDM4MDAzLCJ1c2VybmFtZSI6Imlyd2FuLmRldiJ9.s33MN9-RdlBwDyVWb5T8sFr9C3DICguYR7AyHzAPKPc
+
+{
+    "issbn": "ISB181297"
+}

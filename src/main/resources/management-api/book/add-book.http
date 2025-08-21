@@ -1,16 +1,21 @@
-POST http://localhost:8080/books/
+POST http://localhost:8081/mbc/books/
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyYyI6InNlIiwiaWQiOiIyNWRjZmQ3OC1jMGYyLTQ5NGEtYmU1MC0wYTk3MzY1YmFjMjgiLCJleHAiOjE3NTQ0NjQ4Mjl9.FrLgyV7PnwwSRH_7_FFlONiPYrmKBi8mymNOORFtItU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyYyI6InNlIiwiZXhwIjoxNzU1NTgzODk2LCJ1c2VybmFtZSI6Imlyd2FuLmRldiJ9.xhsKKtA9MqsdH-e_tx--rRITmrCu_bJyyC9XMAOi2k8
 
 {
-    "issbn":"ISB12234",
-    "title":"Atomic Habits 2",
-    "numberOfPage":"700",
-    "synopsis":"Build Human Habit for someday",
-    "price":10.0,
-    "publisher":"No",
-    "authorName":"Now",
-    "bookType":{
-        "bookTypeCode":"adv"
-    }
+    "issbn":"ISB112233",
+    "title":"Seni Merayu Tuhan",
+    "numberOfPage":222,
+    "description":"Build Human Habit for someday",
+    "price":50.0,
+    "publisher":"Mizan",
+    "authorName":"Husein Jafar",
+    "bookTypes":[
+        {
+            "bookTypeCode":"DMR"
+        },
+        {
+            "bookTypeCode":"ADV"
+        }
+    ] 
 }
