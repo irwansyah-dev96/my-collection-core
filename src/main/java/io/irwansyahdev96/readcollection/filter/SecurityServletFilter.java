@@ -57,7 +57,7 @@ public class SecurityServletFilter extends OncePerRequestFilter{
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }catch(Exception e) {
-                //e.printStackTrace();
+                e.printStackTrace();
 
                 response.setContentType("application/json");
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
