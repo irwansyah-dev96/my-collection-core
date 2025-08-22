@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.irwansyahdev96.readcollection.util.JwtUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -35,12 +36,19 @@ public class SecurityServletFilter extends OncePerRequestFilter{
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Value("${secret.key}")
+    private String secretKey;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        Long count = requestMatchers.stream().filter(m -> m.matches(request)).collect(Collectors.counting());
+        final String xApiKey = request.getHeader("X-Api-Key");
+        Long countOfReq = requestMatchers.stream().filter(m -> m.matches(request)).collect(Collectors.counting());
 
-        if(!request.getRequestURI().equals("login") && count == 0) {
+        if(!request.getRequestURI().equals("login") 
+                    && countOfReq == 0 
+                    && !secretKey.equals(xApiKey)) {
+
             final String header = request.getHeader("Authorization");
             final String[] partHead = header.split(" ");
 
