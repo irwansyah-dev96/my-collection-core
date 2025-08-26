@@ -2,6 +2,7 @@ package io.irwansyahdev96.readcollection.business.httpclient.client;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.irwansyahdev96.readcollection.base.constant.Server;
@@ -10,9 +11,12 @@ import io.irwansyahdev96.readcollection.base.dao.BaseClient;
 @Component
 public class ReadBookClient extends BaseClient{
     
+    @Value("${app.host.read}")
+    private String serverRead;
+
     public Boolean isExistReadbook(String issbn){
         StringBuilder sb = new StringBuilder();
-        sb.append(Server.SERVER_CORE)
+        sb.append(serverRead)
         .append(Server.PATH_READ_BOOK)
         .append(String.format("/%s/readbook", issbn));
 
