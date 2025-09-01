@@ -1,0 +1,19 @@
+POST http://192.168.252.166:8081/mbc/books/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyYyI6InNlIiwiaWQiOiJpcndhbi5kZXYiLCJleHAiOjE3NTYyMjM0Mjd9.Ok5eoDsBed7GVIFd3pwb5bG8ilBfi7UiGg06f5qtkGE
+
+{
+    "issbn":"ISB181296",
+    "title":"Filosofi Teras",
+    "numberOfPage":222,
+    "description":"Build Human Habit for someday",
+    "price":50.0,
+    "publisher":"Kompas",
+    "authorName":"Henry M.",
+    "bookTypes":[
+
+        {
+            "bookTypeCode":"ADV"
+        }
+    ] 
+}

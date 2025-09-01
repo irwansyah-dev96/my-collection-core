@@ -1,0 +1,8 @@
+POST http://192.168.252.166:8081/mbc/categories/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyYyI6InNlIiwiaWQiOiJpcndhbi5kZXYiLCJleHAiOjE3NTYyMjM0Mjd9.Ok5eoDsBed7GVIFd3pwb5bG8ilBfi7UiGg06f5qtkGE
+
+{
+    "categoryCode": "HOR",
+    "categoryName": "Horror"
+}

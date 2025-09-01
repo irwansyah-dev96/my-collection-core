@@ -1,0 +1,7 @@
+DELETE http://192.168.168.166:8081/mbc/books/
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyYyI6InNlIiwiaWQiOiJpcndhbi5kZXYiLCJleHAiOjE3NTYxOTg5MDh9.f5iC6GtcK5errrOml7U395TH75Zc-bwq6qjPCr2nhJM
+
+{
+    "issbn": "ISB181297"
+}
